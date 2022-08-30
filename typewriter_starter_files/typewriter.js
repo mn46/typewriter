@@ -7,7 +7,6 @@ const typesound2 = document.querySelector("#typekey2");
 const spacesound = document.querySelector("#typespace");
 const typelast = document.querySelector("#typelast");
 const typereturn = document.querySelector("#typereturn");
-// let randomSound = typesound + Math.floor(Math.random() * 2 + 1);
 
 function randomTime() {
   return Math.floor(Math.random() * 500 + 1);
@@ -20,23 +19,29 @@ function randomnumber() {
 loop();
 
 function loop() {
-  if (counter <= original.length) {
+  if (counter < original.length + 1) {
     playSound();
     document.querySelector("#typewriter").textContent = original.slice(0, counter);
     counter++;
     setTimeout(loop, randomTime());
-    console.log(randomTime());
+  } else {
+    setTimeout(repeat(), 2000);
   }
 }
 
 function playSound() {
   if (original[counter - 1] === " ") {
     spacesound.play();
-    console.log(counter);
   } else if (counter === original.length) {
     typelast.play();
   } else {
     document.querySelector("#typekey" + randomnumber()).play();
-    console.log(randomnumber());
   }
+}
+
+function repeat() {
+  document.querySelector("#typewriter").textContent = "";
+  counter = 0;
+  typereturn.play();
+  setTimeout(loop, 1600);
 }
