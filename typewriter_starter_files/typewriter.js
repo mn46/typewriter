@@ -7,7 +7,11 @@ const typesound2 = document.querySelector("#typekey2");
 const spacesound = document.querySelector("#typespace");
 const typelast = document.querySelector("#typelast");
 const typereturn = document.querySelector("#typereturn");
-// let randomSound = Math.floor(Math.random() * 2);
+// let randomSound = typesound + Math.floor(Math.random() * 2 + 1);
+
+function randomnumber() {
+  return Math.floor(Math.random() * 2 + 1);
+}
 
 loop();
 
@@ -16,8 +20,7 @@ function loop() {
     playSound();
     document.querySelector("#typewriter").textContent = original.slice(0, counter);
     counter++;
-    setTimeout(loop, 1500);
-    console.log(counter);
+    setTimeout(loop, 500);
   }
 }
 
@@ -25,7 +28,10 @@ function playSound() {
   if (original[counter - 1] === " ") {
     spacesound.play();
     console.log(counter);
+  } else if (counter === original.length) {
+    typelast.play();
   } else {
-    typesound1.play();
+    document.querySelector("#typekey" + randomnumber()).play();
+    console.log(randomnumber());
   }
 }
