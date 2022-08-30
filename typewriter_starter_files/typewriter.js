@@ -9,6 +9,10 @@ const typelast = document.querySelector("#typelast");
 const typereturn = document.querySelector("#typereturn");
 // let randomSound = typesound + Math.floor(Math.random() * 2 + 1);
 
+function randomTime() {
+  return Math.floor(Math.random() * 500 + 1);
+}
+
 function randomnumber() {
   return Math.floor(Math.random() * 2 + 1);
 }
@@ -20,7 +24,8 @@ function loop() {
     playSound();
     document.querySelector("#typewriter").textContent = original.slice(0, counter);
     counter++;
-    setTimeout(loop, 500);
+    setTimeout(loop, randomTime());
+    console.log(randomTime());
   }
 }
 
